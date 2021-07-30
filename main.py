@@ -42,3 +42,16 @@ class InstaFollow:
             enter.click()
         except NoSuchElementException:
             time.sleep(1)
+
+    def find_followers(self):
+        time.sleep(10)
+        '''CLICK ON THE FOLLOWING BUTTON TO ACCESS THE TARGET USER'S FOLLOWERS'''
+        find = self.driver.find_element_by_xpath('//*[@id="react-root"]/section/main/div/header/section/ul/li[2]/a')
+        find.click()
+        '''SINCE THE LIST OF FOLLOWERS IN THE POPUP IS ONLY LIMITED TO 15 VISIBLE USERS, NEED TO BE ABLE TO SCROLL
+        DOWN TO SEE MORE FOLLOWERS (SCROLL DOWN ON THE POPUP NOT THE MAIN WEBPAGE).'''
+        time.sleep(5)
+        modal = self.driver.find_element_by_xpath('/html/body/div[5]/div/div/div[2]')
+        for i in range(20):
+            self.driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight", modal)
+            time.sleep(3)

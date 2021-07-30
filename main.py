@@ -31,3 +31,14 @@ class InstaFollow:
         log_in = self.driver.find_element_by_xpath('//*[@id="loginForm"]/div/div[3]/button')
         log_in.click()
         time.sleep(5)
+
+        '''SEARCH FOR A TARGET/DESIRED ACCOUNT THAT YOU WANT TO FOLLOW.'''
+        try:
+            search = self.driver.find_element_by_xpath('//*[@id="react-root"]/section/nav/div[2]/div/div/div[2]/input')
+            search.send_keys(f'{SIMILAR_ACCOUNT}')
+            time.sleep(1)
+            enter = self.driver.find_element_by_xpath(
+                '//*[@id="react-root"]/section/nav/div[2]/div/div/div[2]/div[3]/div/div[2]/div/div[1]/a/div/div[2]')
+            enter.click()
+        except NoSuchElementException:
+            time.sleep(1)
